@@ -1,0 +1,30 @@
+# .NET build folders
+bin/
+obj/
+.vs/
+packages/
+*.user
+*.suo
+*.cache
+
+# Debug files
+*.pdb
+*.log
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# User-specific files
+*.rsuser
+*.userosscache
+*.sln.docstates
+
+# Temporary files
+[Tt]emp/
+[Tt]mp/
+*.tmp
+
+# Visual Studio for Mac
+.vscode/
+.DS_Store 
