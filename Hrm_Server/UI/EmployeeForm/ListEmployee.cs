@@ -263,7 +263,7 @@ namespace Hrm_Server.UI.EmployeeForm
             // Kiểm tra xem có nhân viên nào được chọn không
             if (dgvEmployees.CurrentRow == null)
             {
-                MessageBox.Show("Vui lòng chọn nhân viên cần chỉnh sửa.", "Thông báo", 
+                MessageBox.Show("Vui lòng chọn nhân viên cần xem chi tiết.", "Thông báo", 
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
@@ -271,20 +271,9 @@ namespace Hrm_Server.UI.EmployeeForm
             // Lấy ID của nhân viên được chọn
             int employeeId = (int)dgvEmployees.CurrentRow.Cells["EmployeeId"].Value;
             
-            // Lấy thông tin chi tiết nhân viên
-            var employee = _employeeService.GetEmployeeById(employeeId);
-            
-            if (employee != null)
-            {
-                // Mở form chỉnh sửa thông tin nhân viên
-                var employeeForm = new EmployeeForm();
-                
-                if (employeeForm.ShowDialog() == DialogResult.OK)
-                {
-                    // Tải lại danh sách nhân viên
-                    LoadEmployees();
-                }
-            }
+            // Mở form xem thông tin chi tiết nhân viên
+            var employeeForm = new EmployeeForm(employeeId);
+            employeeForm.ShowDialog();
         }
         
         private void BtnDelete_Click(object sender, EventArgs e)
@@ -333,15 +322,9 @@ namespace Hrm_Server.UI.EmployeeForm
                 // Lấy ID của nhân viên được chọn
                 int employeeId = (int)dgvEmployees.Rows[e.RowIndex].Cells["EmployeeId"].Value;
                 
-                // Lấy thông tin chi tiết nhân viên
-                var employee = _employeeService.GetEmployeeById(employeeId);
-                
-                if (employee != null)
-                {
-                    // Mở form xem thông tin chi tiết nhân viên
-                    var employeeForm = new EmployeeForm();
-                    employeeForm.ShowDialog();
-                }
+                // Mở form xem thông tin chi tiết nhân viên
+                var employeeForm = new EmployeeForm(employeeId);
+                employeeForm.ShowDialog();
             }
         }
     }
